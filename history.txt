@@ -1,0 +1,80 @@
+    1  gcloud config set project local-receiver-248409
+    2  pwd
+    3  ls -ltr
+    4  git --version
+    5  git clone https://github.com/mksyn/sample.git
+    6  ls -ltr
+    7  cd sample/
+    8  mkdir pod
+    9  mkdir replica
+   10  mkdir deployment
+   11  ls -ltr
+   12  kubectl get pods
+   13  gcloud container clusters get-credentials --zone us-central1-a
+   14  gcloud container clusters get-credentials "standard-cluster-1" --zone us-central1-a
+   15  ls -ltr
+   16  cd ..
+   17  ls -ltr
+   18  cd sample/
+   19  kubectl get pods
+   20  kubectl delete pod myapp-pod
+   21  vi pod-definition.yml
+   22  kubectl create -f ./pod-definition.yml 
+   23  kubectl get pods
+   24  ls -ltr
+   25  mv ./pod-definition.yml ./pod/
+   26  ls -ltr
+   27  git status
+   28  git add *
+   29  git status
+   30  git commit -m "creating pod file"
+   31  git config --global user.email "mksyn2k19@gmail.com"
+   32  git config --global user.name "MohanKumar"
+   33  git commit -m "creating pod file"
+   34  git status
+   35  git branch
+   36  git push origin 
+   37  git push origin 
+   38  ls -ltr
+   39  cd replica/
+   40  ls -ltr
+   41  vi rc-definition.yml
+   42  ls -ltr
+   43  kubectl create -f ./rc-definition.yml 
+   44  vi rc-definition.yml 
+   45  kubectl create -f ./rc-definition.yml 
+   46  kubectl get pods
+   47  cd ..
+   48  git status
+   49  git add *
+   50  git commit -m "creating replica controller yml file"
+   51  git push origin
+   52  git status
+   53  git branch
+   54  ls -ltr
+   55  cd depl
+   56  cp ./replica/rc-definition.yml ./replica/rs_definition.yml
+   57  git status
+   58  cd replica/
+   59  ls -ltr
+   60  vi rs_definition.yml 
+   61  kubctl get replicaset
+   62  kubectl get replicaset
+   63  ls -ltr
+   64  kubectl create -f ./rs_definition.yml
+   65  vi rs_definition.yml 
+   66  kubectl create -f ./rs_definition.yml
+   67  vi rs_definition.yml 
+   68  kubectl create -f ./rs_definition.yml
+   69  kubectl version
+   70  cp ./rs_definition.yml ../deployment/deployment-definition.yml
+   71  cd ../deployment/
+   72  ls -ltr
+   73  vi deployment-definition.yml 
+   74  ls -ltr
+   75  vi deployment-definition.yml 
+   76  kubectl create -f deployment-definition.yml 
+   77  kubectl get deployments
+   78  kubectl get pods
+   79  history
+   80  history >> ../history.txt
