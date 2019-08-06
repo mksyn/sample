@@ -1,0 +1,811 @@
+Deploy a Multi-tier GuestBook application on a Kubernetes cluster following instructions given.
+
+File: redis-deployment.yml
+
+---
+
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: redis-deployment
+
+  labels:
+
+    app: demo-guestbook-app
+
+   
+
+spec:                       
+
+  template:
+
+    metadata:
+
+      name: redis-pod
+
+      labels:
+
+        name: redis-pod
+
+        app: demo-guestbook-app
+
+       
+
+    spec:                   
+
+      containers:
+
+        - name: redis
+
+          image: redis
+
+          ports:
+
+            - containerPort: 6379
+
+
+
+  replicas: 1
+
+ 
+
+  selector:
+
+      matchLabels:
+
+          name: redis-pod
+
+          app: demo-guestbook-app
+
+Deploy a Multi-tier GuestBook application on a Kubernetes cluster following instructions given.
+
+File: redis-deployment.yml
+
+---
+
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: redis-deployment
+
+  labels:
+
+    app: demo-guestbook-app
+
+   
+
+spec:                       
+
+  template:
+
+    metadata:
+
+      name: redis-pod
+
+      labels:
+
+        name: redis-pod
+
+        app: demo-guestbook-app
+
+       
+
+    spec:                   
+
+      containers:
+
+        - name: redis
+
+          image: redis
+
+          ports:
+
+            - containerPort: 6379
+
+
+
+  replicas: 1
+
+ 
+
+  selector:
+
+      matchLabels:
+
+          name: redis-pod
+
+          app: demo-guestbook-app
+
+
+
+File: redis-service.yml
+
+---
+
+apiVersion: v1
+
+kind: Service
+
+metadata:
+
+  name: redis
+
+  labels:
+
+    name: redis-service
+
+    app: demo-guestbook-app
+
+spec:
+
+  ports:
+
+  - port: 6379
+
+    name: redis-something
+
+    targetPort: 6379
+
+  selector:
+
+     name: redis-pod
+
+     app: demo-guestbook-app
+
+
+
+File: guestBook-app-deployment.yml
+
+---
+
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: guestbook-app-deployment
+
+  labels:
+
+    app: demo-guestbook-app
+
+   
+
+spec:                       
+
+  template:
+
+    metadata:
+
+      name: guestbook-app-pod
+
+      labels:
+
+        name: guestbook-app-pod
+
+        app: demo-guestbook-app
+
+       
+
+    spec:                   
+
+      containers:
+
+        - name: guestbook-app
+
+          image: gcr.io/google-samples/gb-frontend:v4
+
+          ports:
+
+            - containerPort: 80
+
+         
+
+  replicas: 1
+
+ 
+
+  selector:
+
+      matchLabels:
+
+          name: guestbook-app-pod
+
+          app: demo-guestbook-app
+
+Deploy a Multi-tier GuestBook application on a Kubernetes cluster following instructions given.
+
+File: redis-deployment.yml
+
+---
+
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: redis-deployment
+
+  labels:
+
+    app: demo-guestbook-app
+
+   
+
+spec:                       
+
+  template:
+
+    metadata:
+
+      name: redis-pod
+
+      labels:
+
+        name: redis-pod
+
+        app: demo-guestbook-app
+
+       
+
+    spec:                   
+
+      containers:
+
+        - name: redis
+
+          image: redis
+
+          ports:
+
+            - containerPort: 6379
+
+
+
+  replicas: 1
+
+ 
+
+  selector:
+
+      matchLabels:
+
+          name: redis-pod
+
+          app: demo-guestbook-app
+
+
+
+File: redis-service.yml
+
+---
+
+apiVersion: v1
+
+kind: Service
+
+metadata:
+
+  name: redis
+
+  labels:
+
+    name: redis-service
+
+    app: demo-guestbook-app
+
+spec:
+
+  ports:
+
+  - port: 6379
+
+    name: redis-something
+
+    targetPort: 6379
+
+  selector:
+
+     name: redis-pod
+
+     app: demo-guestbook-app
+
+
+
+File: guestBook-app-deployment.yml
+
+---
+
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: guestbook-app-deployment
+
+  labels:
+
+    app: demo-guestbook-app
+
+   
+
+spec:                       
+
+  template:
+
+    metadata:
+
+      name: guestbook-app-pod
+
+      labels:
+
+        name: guestbook-app-pod
+
+        app: demo-guestbook-app
+
+       
+
+    spec:                   
+
+      containers:
+
+        - name: guestbook-app
+
+          image: gcr.io/google-samples/gb-frontend:v4
+
+          ports:
+
+            - containerPort: 80
+
+         
+
+  replicas: 1
+
+ 
+
+  selector:
+
+      matchLabels:
+
+          name: guestbook-app-pod
+
+          app: demo-guestbook-app
+
+
+
+File: guestBook-app-service.yml
+
+---
+
+apiVersion: v1
+
+kind: Service
+
+metadata:
+
+  name: guestbook-service
+
+  labels:
+
+    name: guestbook-service
+
+    app: demo-guestbook-app
+
+spec:
+
+  ports:
+
+  - port: 80
+
+    targetPort: 80
+
+  type: LoadBalancer
+
+  selector:
+
+     name: guestbook-app-pod
+
+     app: demo-guestbook-app
+
+Deploy a Multi-tier GuestBook application on a Kubernetes cluster following instructions given.
+
+File: redis-deployment.yml
+
+---
+
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: redis-deployment
+
+  labels:
+
+    app: demo-guestbook-app
+
+   
+
+spec:                       
+
+  template:
+
+    metadata:
+
+      name: redis-pod
+
+      labels:
+
+        name: redis-pod
+
+        app: demo-guestbook-app
+
+       
+
+    spec:                   
+
+      containers:
+
+        - name: redis
+
+          image: redis
+
+          ports:
+
+            - containerPort: 6379
+
+
+
+  replicas: 1
+
+ 
+
+  selector:
+
+      matchLabels:
+
+          name: redis-pod
+
+          app: demo-guestbook-app
+
+
+
+File: redis-service.yml
+
+---
+
+apiVersion: v1
+
+kind: Service
+
+metadata:
+
+  name: redis
+
+  labels:
+
+    name: redis-service
+
+    app: demo-guestbook-app
+
+spec:
+
+  ports:
+
+  - port: 6379
+
+    name: redis-something
+
+    targetPort: 6379
+
+  selector:
+
+     name: redis-pod
+
+     app: demo-guestbook-app
+
+
+
+File: guestBook-app-deployment.yml
+
+---
+
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: guestbook-app-deployment
+
+  labels:
+
+    app: demo-guestbook-app
+
+   
+
+spec:                       
+
+  template:
+
+    metadata:
+
+      name: guestbook-app-pod
+
+      labels:
+
+        name: guestbook-app-pod
+
+        app: demo-guestbook-app
+
+       
+
+    spec:                   
+
+      containers:
+
+        - name: guestbook-app
+
+          image: gcr.io/google-samples/gb-frontend:v4
+
+          ports:
+
+            - containerPort: 80
+
+         
+
+  replicas: 1
+
+ 
+
+  selector:
+
+      matchLabels:
+
+          name: guestbook-app-pod
+
+          app: demo-guestbook-app
+
+
+
+File: guestBook-app-service.yml
+
+---
+
+apiVersion: v1
+
+kind: Service
+
+metadata:
+
+  name: guestbook-service
+
+  labels:
+
+    name: guestbook-service
+
+    app: demo-guestbook-app
+
+spec:
+
+  ports:
+
+  - port: 80
+
+    targetPort: 80
+
+  type: LoadBalancer
+
+  selector:
+
+     name: guestbook-app-pod
+
+     app: demo-guestbook-app
+
+
+
+Deploy a Multi-tier GuestBook application on a Kubernetes cluster following instructions given.
+
+File: redis-deployment.yml
+
+---
+
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: redis-deployment
+
+  labels:
+
+    app: demo-guestbook-app
+
+   
+
+spec:                       
+
+  template:
+
+    metadata:
+
+      name: redis-pod
+
+      labels:
+
+        name: redis-pod
+
+        app: demo-guestbook-app
+
+       
+
+    spec:                   
+
+      containers:
+
+        - name: redis
+
+          image: redis
+
+          ports:
+
+            - containerPort: 6379
+
+
+
+  replicas: 1
+
+ 
+
+  selector:
+
+      matchLabels:
+
+          name: redis-pod
+
+          app: demo-guestbook-app
+
+
+
+File: redis-service.yml
+
+---
+
+apiVersion: v1
+
+kind: Service
+
+metadata:
+
+  name: redis
+
+  labels:
+
+    name: redis-service
+
+    app: demo-guestbook-app
+
+spec:
+
+  ports:
+
+  - port: 6379
+
+    name: redis-something
+
+    targetPort: 6379
+
+  selector:
+
+     name: redis-pod
+
+     app: demo-guestbook-app
+
+
+
+File: guestBook-app-deployment.yml
+
+---
+
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: guestbook-app-deployment
+
+  labels:
+
+    app: demo-guestbook-app
+
+   
+
+spec:                       
+
+  template:
+
+    metadata:
+
+      name: guestbook-app-pod
+
+      labels:
+
+        name: guestbook-app-pod
+
+        app: demo-guestbook-app
+
+       
+
+    spec:                   
+
+      containers:
+
+        - name: guestbook-app
+
+          image: gcr.io/google-samples/gb-frontend:v4
+
+          ports:
+
+            - containerPort: 80
+
+         
+
+  replicas: 1
+
+ 
+
+  selector:
+
+      matchLabels:
+
+          name: guestbook-app-pod
+
+          app: demo-guestbook-app
+
+
+
+File: guestBook-app-service.yml
+
+---
+
+apiVersion: v1
+
+kind: Service
+
+metadata:
+
+  name: guestbook-service
+
+  labels:
+
+    name: guestbook-service
+
+    app: demo-guestbook-app
+
+spec:
+
+  ports:
+
+  - port: 80
+
+    targetPort: 80
+
+  type: LoadBalancer
+
+  selector:
+
+     name: guestbook-app-pod
+
+     app: demo-guestbook-app
